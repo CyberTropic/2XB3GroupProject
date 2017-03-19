@@ -1,0 +1,43 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage{amsfonts}
+
+\oddsidemargin 0mm
+\evensidemargin 0mm
+\textwidth 160mm
+\textheight 200mm
+\renewcommand\baselinestretch{1.0}
+
+\pagestyle {plain}
+\pagenumbering{arabic}
+
+\newcounter{stepnum}
+
+\title{Requirements Specification}
+\author{Group 8}
+
+\begin {document}
+
+\maketitle
+
+\newpage
+
+\section{The Domain}
+The domain of our program is to make meaningful recommendations of financial products and services to consumers. There is currently a problem with the product reviews that doesn’t necessarily net the consumer the best product and doesn’t reward good companies, we want to fix this by implementing a smart and innovative way of choosing products. We will use the consumer complaint database from the US open dataset to make recommendations, this will work by choosing companies not to recommend based on a number of negatives reviews, we will factor in the user’s location and ask them to input a class of financial service or product they want a recommendation for.
+
+
+\section{Functional Requirements}
+The product will be a program which takes in a user location and financial service which they are interested in as an input. The location will be chosen from a number of US regions. From the internal program perspective, these regions will be used to break up the dataset into smaller, more manageable datasets in order to increase the product performance time. The user’s choice of financial service will also be limited to a drop-down menu, which will only display those services which appear in the dataset. This will be done in order to filter the dataset to only show the most relevant results for the user. After the filtering of the dataset is complete, the results will be organized by the financial company. For each company, the number of complaints they received in the selected product group will be displayed. 
+
+\includegraphics[scale=0.5]{LayoutPlanningCurrent.png}
+
+
+\section{Non-Functional Requirements}
+We want our program to be user friendly, with an attractive user interface that makes consumer wants to use our program. We also want our program to be easily accessible or portable, usable from different platforms.
+
+\section{Requirements on the development and maintenance process}
+The program must be maintainable in terms of being able to expand the dataset at any time to increase the number of results.
+
+\end {document}
