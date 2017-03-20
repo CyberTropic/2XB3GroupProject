@@ -5,6 +5,13 @@ public class Complaint {
 	private String company;
 	private String zipCode;
 	
+	public Complaint(int complaintID, String product, String company, String zipCode) {
+		this.complaintID = complaintID;
+		this.product = product;
+		this.company = company;
+		this.zipCode = zipCode;
+	}
+	
 	public int getComplaintID() {
 		return complaintID;
 	}
