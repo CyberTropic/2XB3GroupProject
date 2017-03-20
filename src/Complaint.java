@@ -4,12 +4,14 @@ public class Complaint {
 	private String product;
 	private String company;
 	private String zipCode;
+	private String state;
 	
-	public Complaint(int complaintID, String product, String company, String zipCode) {
+	public Complaint(int complaintID, String product, String company, String zipCode, String state) {
 		this.complaintID = complaintID;
 		this.product = product;
 		this.company = company;
 		this.zipCode = zipCode;
+		this.state = state;
 	}
 	
 	public int getComplaintID() {
@@ -35,5 +37,11 @@ public class Complaint {
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	public String getState() {
+		return zipCode;
+	}
+	public void setState(String state) {
+		this.state = state;
 	}
 }

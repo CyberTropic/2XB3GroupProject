@@ -1,16 +1,9 @@
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
-import java.io.StringReader;
 import java.util.ArrayList;
-import java.util.Scanner;
-import java.util.StringTokenizer;
-import java.util.regex.Matcher;
 
 import com.opencsv.CSVReader;
-import com.sun.xml.internal.bind.v2.runtime.unmarshaller.XsiNilLoader.Array;
 
 public class ComplaintScanner {
 
@@ -50,8 +43,9 @@ public class ComplaintScanner {
 				String product = tokens[1];
 				String company = tokens[7];
 				String zipCode = tokens[9];
-				Complaint readerComplaint = new Complaint(complaintID, product, company, zipCode);
-				System.out.println(complaintID + ";" + product + ";"+company+";"+zipCode);
+				String state = tokens[8];
+				Complaint readerComplaint = new Complaint(complaintID, product, company, zipCode, state);
+				System.out.println(complaintID + ";" + product + ";"+company+";"+zipCode+";"+state);
 				allComplaints.add(readerComplaint);
 			}
 		} catch (IOException e) {
