@@ -42,11 +42,18 @@ public class ComplaintScanner {
 		}
 
 		String[] tokens;
-
+		
+		int line=0;
+		
 		try {
 			reader.readNext();
 			while ((tokens = reader.readNext()) != null) {
-				// System.out.println("Items: " + tokens.length);
+				line++;
+//				 System.out.println("Items: " + tokens.length);
+				if (tokens.length != 18){
+					System.out.println("Invalid line " + line + "\n" + Arrays.toString(tokens));
+					break;
+				}
 				int complaintID;
 				try {
 					complaintID = Integer.parseInt(tokens[17]);
@@ -68,7 +75,7 @@ public class ComplaintScanner {
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
-			e.printStackTrace();
+//			e.printStackTrace();
 		}
 	}
 
