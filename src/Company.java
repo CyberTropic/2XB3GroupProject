@@ -1,7 +1,8 @@
 
-public class Company {
+public class Company implements Comparable<Company> {
 	private String companyName;
 	private int complaints;
+	private double weightedComplaints;
 
 	public Company(String companyName, int complaints) {
 		super();
@@ -29,5 +30,24 @@ public class Company {
 	}
 	public void incComplaints(){
 		this.complaints +=1;
+	}
+	public void addWeightedComplaint(double wc){
+		this.weightedComplaints += wc;
+	}
+	public double getWeightedComplaint(){
+		return weightedComplaints;
+	}
+
+	@Override
+	public int compareTo(Company other) {
+		if (this.weightedComplaints > other.weightedComplaints)
+			return 1;
+		else if (this.weightedComplaints < other.weightedComplaints)
+			return -1;
+		else if (this.complaints > other.complaints)
+			return 1;
+		else if (this.complaints < other.complaints)
+			return -1;
+		return 0;
 	}
 }
