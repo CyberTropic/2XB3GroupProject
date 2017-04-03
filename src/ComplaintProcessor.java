@@ -6,7 +6,7 @@ import edu.princeton.cs.algs4.BreadthFirstPaths;
 
 public class ComplaintProcessor {
 
-	public static Company[] createCompanies(String state) {
+	public static Company[] createCompanies(String state, String product) {
 
 		int stateID = ComplaintScanner.stateIndex.indexOf(state);
 		if (stateID == -1) {
@@ -18,13 +18,15 @@ public class ComplaintProcessor {
 
 		// Construct company array from given state
 		for (Complaint c : ComplaintScanner.stateComplaints[stateID]) {
-			if (companyNames.indexOf(c.getCompany()) == -1) { // Company not
-																// seen yet
-				companiesInState.add(new Company(c.getCompany()));
-				companyNames.add(c.getCompany());
-				companiesInState.get(companyNames.indexOf(c.getCompany())).incComplaints();
-			} else {
-				companiesInState.get(companyNames.indexOf(c.getCompany())).incComplaints();
+			if (c.getProduct().equals(product)) {
+				if (companyNames.indexOf(c.getCompany()) == -1) { // Company not
+																	// seen yet
+					companiesInState.add(new Company(c.getCompany()));
+					companyNames.add(c.getCompany());
+					companiesInState.get(companyNames.indexOf(c.getCompany())).incComplaints();
+				} else {
+					companiesInState.get(companyNames.indexOf(c.getCompany())).incComplaints();
+				}
 			}
 		}
 
@@ -35,9 +37,9 @@ public class ComplaintProcessor {
 			if (stateBFS.hasPathTo(i)) {
 				for (Complaint c : ComplaintScanner.stateComplaints[i]) {
 					if (!(companyNames.indexOf(c.getCompany()) == -1)) {
-//						System.out.println(stateBFS.distTo(i));
+						// System.out.println(stateBFS.distTo(i));
 						companiesInState.get(companyNames.indexOf(c.getCompany()))
-								.addWeightedComplaint(1.0 / (stateBFS.distTo(i)+1));
+								.addWeightedComplaint(1.0 / (stateBFS.distTo(i) + 1));
 					}
 				}
 			}

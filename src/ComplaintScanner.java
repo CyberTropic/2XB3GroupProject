@@ -18,6 +18,7 @@ public class ComplaintScanner {
 	static ArrayList<String> stateIndex = new ArrayList<>();
 	static Digraph stateGraph = new Digraph(stateIndex.size());
 	static ArrayList<Complaint> allComplaints = new ArrayList<>();
+	static String[] services = new String[0];
 
 	static ArrayList<Complaint>[] stateComplaints;
 
@@ -42,6 +43,7 @@ public class ComplaintScanner {
 		}
 
 		String[] tokens;
+		ArrayList<String> tempServices = new ArrayList<>();
 		
 		int line=0;
 		
@@ -72,7 +74,15 @@ public class ComplaintScanner {
 				// company + ";" + zipCode + ";" + state);
 				// allComplaints.add(readerComplaint);
 				stateComplaints[stateIndex.indexOf(state)].add(readerComplaint);
+				
+				if (tempServices.indexOf(product)==-1){
+					tempServices.add(product);
+				}
+				
 			}
+			
+			services = tempServices.toArray(new String[tempServices.size()]);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 //			e.printStackTrace();
@@ -148,14 +158,31 @@ public class ComplaintScanner {
 		System.out.println("Continue?[Y/N]");
 		Scanner userIn = new Scanner(System.in);
 		while (userIn.hasNext() && (userIn.nextLine().equalsIgnoreCase("y"))) {
+			
+			//Input
 			System.out.println("Enter state: ");
 			String userState = userIn.nextLine();
 			if (stateIndex.indexOf(userState.toUpperCase())==-1){
 				System.out.println("Invalid state!");
 				continue;
 			}
+			System.out.println("Select a service: ");
+			for (int i=0; i<services.length;i++){
+				System.out.println((i+1) + ": " + services[i] );
+			}
+
+			String userProduct = userIn.nextLine();
+			if (!(Integer.parseInt(userProduct)-1>= 0 || Integer.parseInt(userProduct)-1 < services.length)){
+				System.out.println("Invalid product!");
+				continue;
+			}
 			
-			Company[] outComp = ComplaintProcessor.createCompanies(userState.toUpperCase());
+			userProduct = services[Integer.parseInt(userProduct)-1];
+			System.out.println(userProduct);
+			
+//			String userProduct = "";
+			
+			Company[] outComp = ComplaintProcessor.createCompanies(userState.toUpperCase(), userProduct);
 			for (Company c : outComp) {
 				// System.out.printf("%-40s: %.8f \n",c.getCompanyName(),
 				// c.getWeightedComplaint());
