@@ -187,6 +187,7 @@ public class ComplaintScanner {
 				// System.out.printf("%-40s: %.8f \n",c.getCompanyName(),
 				// c.getWeightedComplaint());
 			}
+			//Sort companies
 			Arrays.sort(outComp);
 			System.out.printf("%-6s|%-45s|%-16s \n", "Rank", "Company name", "Complaint Rating");
 			System.out.printf(String.join("", Collections.nCopies(6, "-")) + "+"
