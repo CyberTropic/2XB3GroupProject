@@ -1,14 +1,13 @@
 import java.util.ArrayList;
-import java.util.Scanner;
+//import java.util.Scanner;
 
 import edu.princeton.cs.algs4.BreadthFirstDirectedPaths;
-import edu.princeton.cs.algs4.BreadthFirstPaths;
+//import edu.princeton.cs.algs4.BreadthFirstPaths;
 
 public class ComplaintProcessor {
 
-	public static Company[] createCompanies(String state, String product) {
-
-		int stateID = ComplaintScanner.stateIndex.indexOf(state);
+	public static Company[] createCompanies(int state, String product) {
+		int stateID = state;
 		if (stateID == -1) {
 			return null;
 		}

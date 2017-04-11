@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 public class Search {
 	
@@ -36,18 +37,18 @@ public class Search {
 	//binary search
 	//array a must be sorted
 	//returns the index of the key, or -1 if not found
-	private static int binary(int[] a, int key){
+	public static int binary(ArrayList<String> stateIndex, String key){
 		//the array, the length of the sorted array, the key
 		//returns the index where the key should be inserted
-		int high = a.length-1;	//the last value of the sorted array
+		int high = stateIndex.size()-1;	//the last value of the sorted array
 		int low= 0;		//the first value of the sorted array (always zero)
 		
 		while(high>=low){
 			int mid = (high+low)/2;	//the middle index of the array
-			if(key>a[mid]){
+			if(key.compareTo(stateIndex.get(mid))>0){
 				low=mid+1;	//if greater, the lowest index is set to one greater than mid
 			}
-			else if(key<a[mid]){//if less, the highest index is set to one less than mid
+			else if(key.compareTo(stateIndex.get(mid))<0){//if less, the highest index is set to one less than mid
 				high=mid-1;
 			}
 			else{//if the values are equal, return the current index
@@ -57,28 +58,28 @@ public class Search {
 		return -1;//if no matches, return -1
 	}
 	
-	public static void main(String[] args) {
-		int[] a= new int[10];	//test array
-		a[0]= -11;
-		a[1]= 2;
-		a[2]= 6;
-		a[3]= 7;
-		a[4]= 8;
-		a[5]= 9;
-		a[6]= 12;
-		a[7]= 48;
-		a[8]= 50;
-		a[9]= 54;
+	/*public static void main(String[] args) {
+		ArrayList<Comparable> a= new ArrayList<Comparable>();	//test array
+		a.add(-11);
+		a.add(2);
+		a.add(6);
+		a.add(7);
+		a.add(8);
+		a.add(9);
+		a.add(12);
+		a.add(48);
+		a.add(50);
+		a.add(54);
 		
-		System.out.println("Interpolation Search ");
+		/*System.out.println("Interpolation Search ");
 		for(int c=-20; c<80; c++){
 			int x= interpolate(a, c);
 			if(x!=-1){
 				System.out.println("value "+c+" index "+x);
 			}
-		}
+		}*/
 		
-		System.out.println("\nBinary Search");
+		/*System.out.println("\nBinary Search");
 		for(int c=-20; c<80; c++){
 			int x= binary(a, c);
 			if(x!=-1){
@@ -86,7 +87,7 @@ public class Search {
 			}
 		}
 
-	}
+	}*/
 
 }
 

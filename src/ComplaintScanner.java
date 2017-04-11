@@ -2,7 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.Reader;
+//import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -116,7 +116,7 @@ public class ComplaintScanner {
 			}
 			tempAdjHolder.add(adj);
 		}
-
+		Collections.sort(stateIndex);
 		stateGraph = new Digraph(stateIndex.size());
 		for (int i = 0; i < stateIndex.size(); i++) {
 			if (tempAdjHolder.get(i).length > 0) {
@@ -142,65 +142,6 @@ public class ComplaintScanner {
 		// }
 		// }
 
-	}
-
-	public static void main(String[] args) {
-		ComplaintScanner.stateScanner();
-		// System.out.println(stateIndex);
-		ComplaintScanner.createComplaints("Database100k");
-		int sumComp = 0;
-		for (int i = 0; i < stateComplaints.length; i++) {
-			System.out.println(stateIndex.get(i) + ": " + stateComplaints[i].size() + " complaints");
-			sumComp += stateComplaints[i].size();
-		}
-		System.out.println("Total complaints: " + sumComp);
-
-		System.out.println("Continue?[Y/N]");
-		Scanner userIn = new Scanner(System.in);
-		while (userIn.hasNext() && (userIn.nextLine().equalsIgnoreCase("y"))) {
-			
-			//Input
-			System.out.println("Enter state: ");
-			String userState = userIn.nextLine();
-			if (stateIndex.indexOf(userState.toUpperCase())==-1){
-				System.out.println("Invalid state!");
-				continue;
-			}
-			System.out.println("Select a service: ");
-			for (int i=0; i<services.length;i++){
-				System.out.println((i+1) + ": " + services[i] );
-			}
-
-			String userProduct = userIn.nextLine();
-			if (!(Integer.parseInt(userProduct)-1>= 0 || Integer.parseInt(userProduct)-1 < services.length)){
-				System.out.println("Invalid product!");
-				continue;
-			}
-			
-			userProduct = services[Integer.parseInt(userProduct)-1];
-			System.out.println(userProduct);
-			
-//			String userProduct = "";
-			
-			Company[] outComp = ComplaintProcessor.createCompanies(userState.toUpperCase(), userProduct);
-			for (Company c : outComp) {
-				// System.out.printf("%-40s: %.8f \n",c.getCompanyName(),
-				// c.getWeightedComplaint());
-			}
-			//Sort companies
-			Arrays.sort(outComp);
-			System.out.printf("%-6s|%-45s|%-16s \n", "Rank", "Company name", "Complaint Rating");
-			System.out.printf(String.join("", Collections.nCopies(6, "-")) + "+"
-					+ String.join("", Collections.nCopies(45, "-")) + "+"
-					+ String.join("", Collections.nCopies(16, "-"))
-					+ "\n");
-			for (int i = 0; i < outComp.length; i++) {
-				System.out.printf("%-6s|%-45s|%.8f \n", Integer.toString(i + 1), outComp[i].getCompanyName(),
-						outComp[i].getWeightedComplaint());
-			}
-			System.out.println("Continue?[Y/N]");
-
-		}
 	}
 
 }
