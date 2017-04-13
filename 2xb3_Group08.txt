@@ -1,0 +1,6 @@
+COMP SCI 2XB3
+Justin Vu: 001403210 Researcher, technical writer, programmer
+Chen Chen: 400018500 Log admin, front-end dev
+Vlad Falach: 001055375 Team leader, designer, programmer, tester
+Yichao Pan: 001327144 Programmer, QA
+April 12, 2017: This is a statement attesting to the fact that the work being submitted by us is our group work
